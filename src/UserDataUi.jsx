@@ -16,15 +16,15 @@ const UserDataUi = ({ users }) => {
 
   return (
     <div className="min-h-screen bg-slate-100 sm:p-8">
-      <div className="flex  justify-between md:justify-center gap-3 md:gap-10 pt-5 sm:pt-0">
+      <div className="flex flex-col sm:flex-row  justify-between md:justify-center gap-3 md:gap-10 pt-5 sm:pt-0">
         <input
           type="text"
           placeholder="Search user by name..."
-          className="px-5 py-2 border-2 border-blue-500 rounded-3xl outline-none w-100 md:w-150"
+          className="px-5 py-2 border-2 border-blue-500 rounded-3xl outline-none w-full md:w-150"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <button className="bg-green-500 text-white cursor-pointer px-2 py-1 rounded-xl">
+        <button className="bg-green-500 w-1/2 md:w-40 m-auto sm:m-0 text-white cursor-pointer px-2 py-4 rounded-xl">
           Add New User +
         </button>
       </div>
