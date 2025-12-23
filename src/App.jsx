@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Home from "./Home";
 import Users from "./Users";
 import About from "./About";
+import Loader from "./Loader";
 
 const App = () => {
   return (
