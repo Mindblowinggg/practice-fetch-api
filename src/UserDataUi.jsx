@@ -2,9 +2,15 @@ import React, { useState } from "react";
 
 const UserDataUi = ({ users }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [nonDeletedUsers, setNonDeletedUsers] = useState(users);
 
-  const FilteredUsers = users.filter((user) => {
-    if (searchTerm.trim === "") return true;
+  const handleDelete = (id) => {
+    const remaining = nonDeletedUsers.filter((user) => user.id !== id);
+    setNonDeletedUsers(remaining);
+  };
+
+  const FilteredUsers = nonDeletedUsers.filter((user) => {
+    if (searchTerm.trim() === "") return true;
     return user.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
@@ -25,19 +31,25 @@ const UserDataUi = ({ users }) => {
           <p className="text-gray-500 mt-2">Try searching for another name.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10">
           {FilteredUsers.map((user) => (
             <div
               key={user.id}
               className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
             >
               {/* --- 1. Header Section --- */}
-              <div className="bg-linear-to-r from-blue-500 to-indigo-600 p-6">
+              <div className="bg-linear-to-r from-blue-500 to-indigo-600 p-6 relative">
                 <h2 className="text-2xl font-bold text-white">{user.name}</h2>
                 <p className="text-blue-100 font-medium">@{user.username}</p>
                 <span className="inline-block mt-2 bg-white/20 text-white text-xs px-2 py-1 rounded">
                   ID: {user.id}
                 </span>
+                <button
+                  onClick={() => handleDelete(user.id)}
+                  className="text-white bg-red-500 cursor-pointer hover:bg-red-600 py-1 px-2.5 rounded-lg absolute right-6"
+                >
+                  Delete
+                </button>
               </div>
 
               <div className="p-6 space-y-6">
