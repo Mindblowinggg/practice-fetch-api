@@ -11,6 +11,33 @@ const UserDataUi = ({ users }) => {
     setNonDeletedUsers(remaining);
   };
 
+  const addNewUser = (name, email) => {
+    const newUser = {
+      id: Date.now(),
+      name: name,
+      email: email,
+      phone: "000-000-0000",
+      username: "new_user",
+      website: "N/A",
+
+      address: {
+        street: "N/A",
+        suite: "N/A",
+        city: "N/A",
+        zipcode: "00000",
+        geo: { lat: "0", lng: "0" },
+      },
+      company: {
+        name: "N/A",
+        catchPhrase: "Just Added",
+        bs: "N/A",
+      },
+    };
+
+    setNonDeletedUsers([newUser, ...nonDeletedUsers]);
+    setAddNewUserBtnClicked(false);
+  };
+
   const FilteredUsers = nonDeletedUsers.filter((user) => {
     if (searchTerm.trim() === "") return true;
     return user.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -34,7 +61,10 @@ const UserDataUi = ({ users }) => {
         </button>
 
         {AddNewUserBtnClicked ? (
-          <AddNewUserForm setAddNewUserBtnClicked={setAddNewUserBtnClicked} />
+          <AddNewUserForm
+            setAddNewUserBtnClicked={setAddNewUserBtnClicked}
+            onAddUser={addNewUser}
+          />
         ) : (
           ""
         )}
