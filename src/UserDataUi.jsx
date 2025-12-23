@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import AddNewUserForm from "./AddNewUserForm";
 
 const UserDataUi = ({ users }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [nonDeletedUsers, setNonDeletedUsers] = useState(users);
+  const [AddNewUserBtnClicked, setAddNewUserBtnClicked] = useState(false);
 
   const handleDelete = (id) => {
     const remaining = nonDeletedUsers.filter((user) => user.id !== id);
@@ -24,9 +26,18 @@ const UserDataUi = ({ users }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <button className="bg-green-500 w-1/2 md:w-40  text-white cursor-pointer px-2 py-4 rounded-xl">
+        <button
+          onClick={() => setAddNewUserBtnClicked(!AddNewUserBtnClicked)}
+          className="bg-green-500 w-1/2 md:w-40  text-white cursor-pointer px-2 py-4 rounded-xl"
+        >
           Add New User +
         </button>
+
+        {AddNewUserBtnClicked ? (
+          <AddNewUserForm setAddNewUserBtnClicked={setAddNewUserBtnClicked} />
+        ) : (
+          ""
+        )}
       </div>
 
       {FilteredUsers.length === 0 ? (
