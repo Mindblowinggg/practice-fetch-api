@@ -3,10 +3,10 @@ import "./index.css";
 
 const Loader = () => {
   return (
-    <div>
-      <h1>
+    <div className=" flex justify-center items-center">
+      <h1 className="flex justify-center items-center text-4xl">
         Loading...
-        <RiLoaderFill className="spinning-loader" />
+        <RiLoaderFill size={50} className="spinning-loader" />
       </h1>
     </div>
   );
