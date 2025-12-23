@@ -16,8 +16,8 @@ const useUsers = () => {
         }
         const data = await response.json();
         setUsers(data);
-      } catch (err) {
-        setError(err.message);
+      } catch {
+        setError("something is wrong , please try again");
       } finally {
         setLoading(false);
       }
