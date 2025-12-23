@@ -15,12 +15,12 @@ const UserDataUi = ({ users }) => {
   });
 
   return (
-    <div className="min-h-screen bg-slate-100 p-8">
-      <div className="flex justify-center gap-3 md:gap-10">
+    <div className="min-h-screen bg-slate-100 sm:p-8">
+      <div className="flex  justify-between md:justify-center gap-3 md:gap-10 pt-5 sm:pt-0">
         <input
           type="text"
           placeholder="Search user by name..."
-          className="px-5 py-2 border-2 border-blue-500 rounded-3xl outline-none w-120 md:w-150"
+          className="px-5 py-2 border-2 border-blue-500 rounded-3xl outline-none w-100 md:w-150"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
